@@ -1,0 +1,163 @@
+════════════════════════════════════════════════════════════════
+  PROYECTO: 006ScreaingFrog-cli
+  DESCRIPCIÓN: Auditoría SEO con Screaming Frog CLI en terminal
+  TECH: Screaming Frog, Shell, VM/Linux
+════════════════════════════════════════════════════════════════
+
+📁 ESTRUCTURA DEL PROYECTO:
+──────────────────────────────────────────────────────────────
+
+  📂 flow/                       → Documentación de flujos
+    └── flowVM.md               → Pasos para ejecutar en VM Linux
+    └── VM.md                   → Configuración de máquina virtual
+    └── mapaGeneral-proyecto.md → Mapa general del proyecto
+
+
+🎯 ¿QUÉ ES ESTE PROYECTO?
+──────────────────────────────────────────────────────────────
+
+Es un workflow para usar Screaming Frog SEO Spider desde línea de 
+comandos (CLI) sin interfaz gráfica. Ideal para:
+
+  • Ejecutar auditorías SEO en servidores/VMs
+  • Automatizar crawls de sitios grandes
+  • Generar reportes en batch
+  • Integrar en pipelines de CI/CD
+
+
+🚀 CÓMO USAR:
+──────────────────────────────────────────────────────────────
+
+  1. VERIFICAR INSTALACIÓN:
+     screamingfrogseospider --help
+
+  2. CREAR ESTRUCTURA BASE:
+     mkdir -p $HOME/sf-cli/{config,crawls,exports,logs,scripts,tmp}
+
+  3. EJECUTAR UN CRAWL SENCILLO:
+     screamingfrogseospider \
+       --crawl "https://www.ejemplo.com/" \
+       --headless \
+       --save-crawl \
+       --output-folder "$HOME/sf-cli/crawls" \
+       --timestamped-output
+
+  4. VER RESULTADOS:
+     cd $(ls -td $HOME/sf-cli/crawls/* | head -1)
+     ls -la
+
+
+⚙️ CONFIGURACIÓN DEL ENTORNO:
+──────────────────────────────────────────────────────────────
+
+  • Sistema: Linux / VM (Ubuntu recomendado)
+  • Requisito: Screaming Frog SEO Spider CLI instalado
+  • Permisos: Acceso a terminal con permisos de ejecución
+
+
+📋 PARÁMETROS PRINCIPALES CLI:
+──────────────────────────────────────────────────────────────
+
+  --crawl "URL"                 → URL a auditar
+  --headless                    → Ejecutar sin interfaz gráfica
+  --save-crawl                  → Guardar archivo de crawl
+  --output-folder "ruta"        → Carpeta de salida
+  --timestamped-output          → Agregar timestamp a salida
+  --bulk-export "tipo"          → Exportar formato específico
+  --user-agent "agent"          → Cambiar user agent
+  --timeout N                   → Timeout en segundos
+  --max-pages N                 → Máximo de páginas a crawlear
+
+
+📂 ESTRUCTURA DE CARPETAS GENERADAS:
+──────────────────────────────────────────────────────────────
+
+  $HOME/sf-cli/
+  ├── config/        → Archivos de configuración
+  ├── crawls/        → Resultados de auditorías (timestamped)
+  │   └── 2025.11.19.17.43.39/
+  │       ├── [datos de crawl]
+  │       ├── [reportes]
+  ├── exports/       → Exportaciones procesadas
+  ├── logs/          → Logs de ejecución
+  ├── scripts/       → Scripts bash para automatizar
+  └── tmp/           → Archivos temporales
+
+
+💡 EJEMPLOS DE COMANDOS:
+──────────────────────────────────────────────────────────────
+
+  # Crawl básico con timestamp
+  screamingfrogseospider --crawl "https://ejemplo.com" --headless \
+    --output-folder "$HOME/sf-cli/crawls" --timestamped-output
+
+  # Crawl con límite de páginas
+  screamingfrogseospider --crawl "https://ejemplo.com" --headless \
+    --max-pages 1000 --output-folder "$HOME/sf-cli/crawls"
+
+  # Ver carpeta más reciente
+  cd $(ls -td $HOME/sf-cli/crawls/* | head -1)
+
+  # Listar contenido detallado
+  ls -lah
+
+
+📁 DOCUMENTACIÓN INCLUIDA:
+──────────────────────────────────────────────────────────────
+
+  flowVM.md
+    → Pasos paso a paso para ejecutar en una VM
+    → Comandos específicos y verificaciones
+  
+  VM.md
+    → Configuración de máquina virtual
+    → Requisitos de sistema
+    → Instalación de Screaming Frog CLI
+  
+  mapaGeneral-proyecto.md
+    → Visión general del proyecto
+    → Flujos de trabajo
+    → Objetivos
+
+
+✅ FLUJO TÍPICO:
+──────────────────────────────────────────────────────────────
+
+  1. Verificar instalación (--help)
+  
+  2. Crear directorios base
+  
+  3. Ejecutar crawl con --headless
+  
+  4. Guardar automáticamente con --timestamped-output
+  
+  5. Procesar resultados desde carpeta generada
+
+
+⚠️ NOTAS IMPORTANTES:
+──────────────────────────────────────────────────────────────
+
+  • Requiere licencia activa de Screaming Frog
+  
+  • Ideal ejecutarse en Linux/VM por eficiencia
+  
+  • --headless es imprescindible en servidores sin GUI
+  
+  • --timestamped-output evita sobrescribir resultados
+  
+  • Auditorías grandes pueden tardar horas (ajustar --max-pages)
+  
+  • Los logs se guardan en la carpeta de salida
+
+
+🔗 REFERENCIAS:
+──────────────────────────────────────────────────────────────
+
+  • Documentación Screaming Frog:
+    https://www.screamingfrog.co.uk/
+
+  • CLI guía oficial:
+    https://www.screamingfrog.co.uk/seo-spider/user-guide/
+
+
+════════════════════════════════════════════════════════════════
